@@ -1,0 +1,19 @@
+version: "3.6"
+
+services:
+
+  olsmock:
+    image: node:10.23.1
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/var/www/html
+      - olsmock_node_modules:/var/www/html/node_modules
+    ports:
+      - "3636:3000"
+    working_dir: /var/www/html/mocks/ols
+    command: yarn start:dev
+
+volumes:
+  olsmock_node_modules:
